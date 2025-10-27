@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Whole World is Heading Towards Quach Duy Truong</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      overflow: hidden;
+      background: radial-gradient(circle at center, #0b1120, #020617 70%);
+      font-family: 'Poppins', sans-serif;
+      color: #eaf6ff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: clamp(28px, 5vw, 54px);
+      font-weight: 700;
+      margin-bottom: 16px;
+      background: linear-gradient(90deg, #5ef5ff, #72a1ff, #ff9efc);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: gradientMove 4s infinite linear;
+      background-size: 200% auto;
+    }
+
+    @keyframes gradientMove {
+      0% { background-position: 0% center; }
+      100% { background-position: 200% center; }
+    }
+
+    p {
+      max-width: 600px;
+      color: #cfe9ff;
+      opacity: 0.9;
+      font-size: 18px;
+      line-height: 1.5;
+      margin-bottom: 28px;
+    }
+
+    .globe {
+      position: relative;
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, #64d5ff, #2563eb 70%);
+      box-shadow: 0 0 30px rgba(0, 170, 255, 0.4);
+      overflow: hidden;
+      animation: spin 10s linear infinite;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .dot {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #ffd86f;
+      box-shadow: 0 0 15px rgba(255, 216, 111, 0.6);
+      animation: orbit 8s linear infinite;
+    }
+
+    .dot:nth-child(1) { top: 50%; left: 100%; animation-delay: 0s; }
+    .dot:nth-child(2) { top: 0%; left: 50%; animation-delay: 2s; }
+    .dot:nth-child(3) { top: 100%; left: 50%; animation-delay: 4s; }
+    .dot:nth-child(4) { top: 50%; left: 0%; animation-delay: 6s; }
+
+    @keyframes orbit {
+      0% { transform: rotate(0deg) translateX(140px) rotate(0deg); }
+      100% { transform: rotate(360deg) translateX(140px) rotate(-360deg); }
+    }
+
+    .btn {
+      background: linear-gradient(90deg, #72a1ff, #5ef5ff);
+      border: none;
+      color: #04101e;
+      font-weight: 700;
+      padding: 14px 26px;
+      border-radius: 14px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: all 0.3s ease;
+      box-shadow: 0 6px 20px rgba(114, 161, 255, 0.3);
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(114, 161, 255, 0.5);
+    }
+
+    footer {
+      position: absolute;
+      bottom: 20px;
+      font-size: 14px;
+      color: #9abaf8;
+      opacity: 0.8;
+    }
+
+    /* background stars */
+    .stars {
+      position: absolute;
+      inset: 0;
+      background: transparent;
+      overflow: hidden;
+      z-index: -1;
+    }
+
+    .stars span {
+      position: absolute;
+      display: block;
+      width: 2px;
+      height: 2px;
+      background: white;
+      opacity: 0.8;
+      border-radius: 50%;
+      animation: twinkle 4s infinite ease-in-out;
+    }
+
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.4; }
+      50% { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <div class="stars" id="stars"></div>
+
+  <h1>The Whole World is Heading Towards<br>Quach Duy Truong</h1>
+  <p>From every corner of the Earth, people are converging on a single destination — Quach Duy Truong. Join the movement and become part of the story shaping the future.</p>
+
+  <div class="globe">
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+  </div>
+
+  <br />
+  <button class="btn" id="joinBtn">Join the Journey</button>
+
+  <footer>© 2025 — The World Heads Towards Quach Duy Truong 🌍</footer>
+
+  <script>
+    // Create twinkling stars
+    const starsContainer = document.getElementById('stars');
+    for (let i = 0; i < 100; i++) {
+      const s = document.createElement('span');
+      s.style.left = Math.random() * 100 + '%';
+      s.style.top = Math.random() * 100 + '%';
+      s.style.animationDelay = Math.random() * 5 + 's';
+      s.style.opacity = Math.random();
+      starsContainer.appendChild(s);
+    }
+
+    // Join button animation
+    document.getElementById('joinBtn').addEventListener('click', () => {
+      const name = prompt("🌍 Enter your name to join Quach Duy Truong’s journey:");
+      if (name) {
+        alert(`Welcome, ${name}! You're now part of the global movement toward Quach Duy Truong! 🚀`);
+      }
+    });
+  </script>
+</body>
+</html>
