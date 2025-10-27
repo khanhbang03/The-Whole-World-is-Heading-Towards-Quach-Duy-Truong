@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Whole World is Heading Towards Quach Duy Truong</title>
+
+  <!-- Leaflet CSS -->
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-sA+z0p3pZyP+4Hz5V9V+6aO2cVt0iCw7GzLxPON0pKA="
+    crossorigin=""
+  />
+
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background: radial-gradient(circle at center, #0b1120, #020617 70%);
+      font-family: 'Poppins', sans-serif;
+      color: #eaf6ff;
+    }
+
+    header {
+      text-align: center;
+      padding: 20px;
+    }
+
+    h1 {
+      font-size: clamp(28px, 5vw, 48px);
+      font-weight: 700;
+      background: linear-gradient(90deg, #5ef5ff, #72a1ff, #ff9efc);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: gradientMove 4s infinite linear;
+      background-size: 200% auto;
+      margin: 0;
+    }
+
+    @keyframes gradientMove {
+      0% { background-position: 0% center; }
+      100% { background-position: 200% center; }
+    }
+
+    p {
+      color: #cfe9ff;
+      opacity: 0.9;
+      margin: 10px auto 20px;
+      max-width: 600px;
+      font-size: 16px;
+    }
+
+    #map {
+      flex: 1;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .btn {
+      background: linear-gradient(90deg, #72a1ff, #5ef5ff);
+      color: #04101e;
+      font-weight: 700;
+      padding: 10px 20px;
+      border-radius: 12px;
+      border: none;
+      cursor: pointer;
+      font-size: 15px;
+      transition: all 0.3s ease;
+      box-shadow: 0 6px 20px rgba(114, 161, 255, 0.3);
+      margin-bottom: 10px;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(114, 161, 255, 0.5);
+    }
+
+    footer {
+      text-align: center;
+      color: #9abaf8;
+      font-size: 13px;
+      padding: 8px 0;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>The Whole World is Heading Towards Quach Duy Truong</h1>
+    <p>People from every nation are joining the journey — adding their mark to the global map of unity.</p>
+    <button class="btn" id="joinBtn">Join the Journey</button>
+  </header>
+
+  <div id="map"></div>
+
+  <footer>© 2025 — The World Heads Towards Quach Duy Truong 🌍</footer>
+
+  <!-- Leaflet JS -->
+  <script
+    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-VzE5bPhT4PjPcyRj6AcfE0i+H6sxTbnLbMQ1v9KK0pQ="
+    crossorigin=""
+  ></script>
+
+  <script>
+    // Initialize the map
+    const map = L.map('map', {
+      worldCopyJump: true
+    }).setView([20, 0], 2);
+
+    // Add OpenStreetMap tiles
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; OpenStreetMap contributors',
+      maxZoom: 5,
+      minZoom: 2
+    }).addTo(map);
+
+    // Predefined countries joining Quach Duy Truong
+    const countries = [
+      { name: "Australia", coords: [-25.2744, 133.7751] },
+      { name: "Vietnam", coords: [14.0583, 108.2772] },
+      { name: "India", coords: [20.5937, 78.9629] },
+      { name: "United States", coords: [37.0902, -95.7129] },
+      { name: "France", coords: [46.6034, 1.8883] },
+      { name: "Brazil", coords: [-14.235, -51.9253] },
+      { name: "South Africa", coords: [-30.5595, 22.9375] },
+      { name: "Japan", coords: [36.2048, 138.2529] },
+      { name: "United Kingdom", coords: [55.3781, -3.436] },
+      { name: "Canada", coords: [56.1304, -106.3468] }
+    ];
+
+    // Add pins for countries
+    countries.forEach(c => {
+      const marker = L.marker(c.coords).addTo(map);
+      marker.bindPopup(`<b>${c.name}</b><br>Has joined Quach Duy Truong! 🚀`);
+    });
+
+    // Join button interaction
+    const joinBtn = document.getElementById("joinBtn");
+    joinBtn.addEventListener("click", () => {
+      const name = prompt("🌍 Enter your name:");
+      if (!name) return alert("Maybe next time!");
+      alert(`Welcome, ${name}! Now click anywhere on the map to mark your location.`);
+
+      // Let the user drop a pin
+      map.once('click', function (e) {
+        const { lat, lng } = e.latlng;
+        const marker = L.marker([lat, lng]).addTo(map);
+        marker.bindPopup(`<b>${name}</b><br>Just joined Quach Duy Truong! 🌏`).openPopup();
+      });
+    });
+  </script>
+</body>
+</html>
